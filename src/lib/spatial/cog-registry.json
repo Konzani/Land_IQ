@@ -1,0 +1,4 @@
+{
+  "soil_ph": "https://files.isric.org/soilgrids/latest/data/phh2o/phh2o_0-5cm_mean.vrt",
+  "elevation_srtm_30m": "https://opentopography.s3.sdsc.edu/raster/NASADEM/NASADEM_HGT.vrt"
+}
