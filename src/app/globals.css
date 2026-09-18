@@ -1,3 +1,122 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-canvas font-ui text-ink;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid #8a3c22;
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: rgba(138, 60, 34, 0.22);
+  }
+}
+
+@layer components {
+  .sheet-surface {
+    background-color: #e7e3d8;
+    background-image: radial-gradient(rgba(25, 23, 18, 0.035) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  .sheet-rule {
+    @apply border-t border-rule/70;
+  }
+
+  .label-note {
+    @apply text-micro text-ink-faint;
+  }
+
+  .score-bar {
+    transform-origin: left center;
+    animation: score-fill 480ms cubic-bezier(0.22, 0.75, 0.3, 1) both;
+  }
+
+  .map-control {
+    @apply flex items-center gap-2 rounded-sheet border border-white/10 bg-ink/85 px-3 py-2 text-sm text-linen-pale backdrop-blur transition-colors;
+  }
+
+  .map-control:hover:not(:disabled) {
+    @apply bg-ink;
+  }
+
+  .map-control[data-active='true'] {
+    @apply border-nitisol/70 bg-nitisol text-linen-pale;
+  }
+
+  .map-control:disabled {
+    @apply cursor-not-allowed opacity-40;
+  }
+}
+
+@keyframes score-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Leaflet surface reset — the stock chrome does not belong on a document-grade tool. */
+.leaflet-container {
+  background: #14150f;
+  font-family: inherit;
+}
+
+.leaflet-control-attribution {
+  background: rgba(20, 21, 15, 0.72) !important;
+  color: #b8b2a3 !important;
+  font-size: 10px !important;
+  padding: 2px 6px !important;
+  backdrop-filter: blur(4px);
+}
+
+.leaflet-control-attribution a {
+  color: #d8d2c2 !important;
+}
+
+.leaflet-control-scale-line {
+  background: rgba(20, 21, 15, 0.72) !important;
+  border: 1px solid rgba(231, 227, 216, 0.5) !important;
+  border-top: none !important;
+  color: #e7e3d8 !important;
+  font-size: 11px !important;
+  padding: 1px 6px !important;
+}
+
+.leaflet-draw-tooltip {
+  background: rgba(20, 21, 15, 0.92) !important;
+  border: 1px solid rgba(231, 227, 216, 0.2) !important;
+  color: #e7e3d8 !important;
+  font-family: inherit !important;
+}
+
+.leaflet-draw-tooltip:before {
+  border-right-color: rgba(20, 21, 15, 0.92) !important;
+}
+
+.leaflet-draw-toolbar,
+.leaflet-draw-actions {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

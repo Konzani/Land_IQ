@@ -1,18 +1,14 @@
 import dynamic from 'next/dynamic'
 
-const MapCanvas = dynamic(() => import('../components/MapCanvas'), {
+const Workspace = dynamic(() => import('../components/Workspace'), {
   ssr: false,
   loading: () => (
-    <div className="h-screen w-full bg-slate-900 flex items-center justify-center">
-      <p className="text-brass font-mono text-sm tracking-widest uppercase">Initializing Engine...</p>
+    <div className="flex h-[100dvh] w-full items-center justify-center bg-canvas">
+      <p className="font-sheet text-lg text-linen/70">Loading the workspace…</p>
     </div>
-  )
+  ),
 })
 
-export default function Home() {
-  return (
-    <main className="h-screen w-full overflow-hidden bg-slate-900">
-      <MapCanvas />
-    </main>
-  )
+export default function Page() {
+  return <Workspace />
 }
